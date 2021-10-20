@@ -5,14 +5,7 @@
   <ng-template #areLibraries>
     <div class="row row-cols-1 row-cols-md-3 g-4">
       <div *ngFor="let library of libraries" class="col">
-        <div class="card">
-          <img src="{{ library.imageUrl }}" class="card-img-top" alt="Что-то пошло не так">
-          <div class="card-body">
-            <h5 class="card-title">{{ library.name }}</h5>
-            <p class="card-text">{{ library.description }}</p>
-            <a href="#" class="btn btn-outline-info">Подробнее</a>
-          </div>
-        </div>
+        <app-library [library]="library"></app-library>
       </div>
     </div>
   </ng-template>

@@ -62,4 +62,12 @@ export class ListOfLibrariesComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  addLibrary() {
+    console.log(`Библиотека добавлена`)
+  }
+
+  removeLibrary(id: number) {
+    console.log(`Библиотека ${id} удалена`)
+  }
+
 }
