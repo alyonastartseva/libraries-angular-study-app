@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { ModalComponent } from './modal/modal.component';
 import { ListOfLibrariesComponent } from './list-of-libraries/list-of-libraries.component';
 import { LibraryCardComponent } from './library-card/library-card.component';
+import { LibraryDetailsComponent } from './library-details/library-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ModalComponent,
     ListOfLibrariesComponent,
-    LibraryCardComponent
+    LibraryCardComponent,
+    LibraryDetailsComponent
   ],
   imports: [
     BrowserModule,
