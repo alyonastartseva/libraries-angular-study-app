@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {Library} from "./Classes/Library";
+
+import { Library } from "./Classes/Library";
 
 @Component({
   selector: 'app-root',
@@ -23,6 +24,7 @@ export class AppComponent {
 
   addLibrary() {
     this.librariesArray.push(new Library(this.newLibrary.name, this.newLibrary.locale, this.newLibrary.address, this.newLibrary.organizationName, this.newLibrary.description));
+
 
     console.log(this.librariesArray)
   }

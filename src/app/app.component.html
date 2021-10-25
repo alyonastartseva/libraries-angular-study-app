@@ -22,7 +22,10 @@
     <form>
       <div class="mb-3">
         <label for="nameLibrary" class="form-label">Название</label>
-        <input type="text" class="form-control" id="nameLibrary" [(ngModel)]="newLibrary.name" name="nameLibrary">
+        <input type="text" class="form-control" id="nameLibrary" [(ngModel)]="newLibrary.name" name="nameLibrary" #nameLibrary="ngModel" required>
+        <div [hidden]="nameLibrary.valid || nameLibrary.untouched" class="alert alert-danger">
+          Не указано название
+        </div>
       </div>
       <div class="mb-3">
         <label for="descriptionLibrary" class="form-label">Описание</label>
@@ -30,11 +33,17 @@
       </div>
       <div class="mb-3">
         <label for="localeLibrary" class="form-label">Местоположение</label>
-        <input type="text" class="form-control" id="localeLibrary" [(ngModel)]="newLibrary.locale" name="localeLibrary">
+        <input type="text" class="form-control" id="localeLibrary" [(ngModel)]="newLibrary.locale" name="localeLibrary" #localeLibrary="ngModel" required>
+        <div [hidden]="localeLibrary.valid || localeLibrary.untouched" class="alert alert-danger">
+          Не указано местоположение
+        </div>
       </div>
       <div class="mb-3">
         <label for="addressLibrary" class="form-label">Адрес</label>
-        <textarea class="form-control" id="addressLibrary" rows="2" [(ngModel)]="newLibrary.address" name="addressLibrary"></textarea>
+        <textarea class="form-control" id="addressLibrary" rows="2" [(ngModel)]="newLibrary.address" name="addressLibrary" #addressLibrary="ngModel" required></textarea>
+        <div [hidden]="addressLibrary.valid || addressLibrary.untouched" class="alert alert-danger">
+          Не указан адрес
+        </div>
       </div>
       <div class="mb-3">
         <label for="organizationName" class="form-label">Юридическое лицо</label>
@@ -48,7 +57,7 @@
   </ng-container>
   <ng-container footer>
     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-    <button type="submit" class="btn btn-primary" (click)="addLibrary()">Сохранить</button>
+    <button type="submit" class="btn btn-primary" (click)="addLibrary()" [disabled]="nameLibrary.invalid || localeLibrary.invalid || addressLibrary.invalid">Сохранить</button>
   </ng-container>
 </app-modal>
 
