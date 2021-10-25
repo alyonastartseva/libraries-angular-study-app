@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { Library } from "./Classes/Library";
+import { libraries } from "./mock-libraries";
 
 @Component({
   selector: 'app-root',
@@ -10,14 +11,7 @@ import { Library } from "./Classes/Library";
 export class AppComponent {
   title = 'libraries-angular-test-app';
 
-  librariesArray: Library[] = [
-                                new Library("2-я детская библиотека Петроградского района",
-                                  "Санкт-Петербург",
-                                  "Татарский пер., 1",
-                                  "Санкт-Петербургское государственное бюджетное учреждение «Централизованная библиотечная система Петроградского района»",
-                                  "Библиотека открылась в 1955 году. Дом, в котором она располагается, возведен по проекту известнейшего петербургского архитектора Павла Мульханова в стиле модерн в 1909 году."
-                                  )
-  ];
+  librariesArray: Library[] = libraries;
 
   /*Modal*/
   newLibrary: Library = new Library("", "", "", "", "");

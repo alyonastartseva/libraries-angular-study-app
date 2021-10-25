@@ -1,0 +1,16 @@
+<div class="container">
+
+  <p *ngIf="!libraries.length; else areLibraries" class="text-center">Упс, библиотеки не найдены</p>
+
+  <ng-template #areLibraries>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div *ngFor="let library of libraries" class="col">
+        <app-library [library]="library"></app-library>
+      </div>
+    </div>
+  </ng-template>
+
+</div>
+
+
+

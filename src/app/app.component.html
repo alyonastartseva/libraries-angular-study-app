@@ -60,7 +60,7 @@
 </app-modal>
 
 <app-modal [id]="'LibraryAddedModal'">
-  <p body>Библиотека <b>{{ newLibrary.name }}</b> успешно добавлена в общий каталог.</p>
+  <span title>Библиотека добавлена</span>
+  <p body>Библиотека <b>{{ newLibrary.name | uppercase }}</b> успешно добавлена в общий каталог.</p>
   <button footer (click)="createLibrary.reset()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Закрыть</button>
 </app-modal>
-
