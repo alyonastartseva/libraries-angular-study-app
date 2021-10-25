@@ -1,1 +1,22 @@
-<p>library-details works!</p>
+<div class="container">
+  <table class="table table-striped table-hover">
+    <thead>
+    <tr>
+      <th scope="col">Название</th>
+      <th scope="col">Описание</th>
+      <th scope="col">Местоположение</th>
+      <th scope="col">Адрес</th>
+      <th scope="col">Юридическое лицо</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>{{ selectedLibrary?.name }}</td>
+      <td>{{ selectedLibrary?.description }}</td>
+      <td>{{ selectedLibrary?.locale }}</td>
+      <td>{{ selectedLibrary?.address }}</td>
+      <td>{{ selectedLibrary?.organizationName }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

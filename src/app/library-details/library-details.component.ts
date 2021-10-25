@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { libraries } from "../mock-libraries";
+import { Library } from "../Classes/Library";
 
 @Component({
   selector: 'app-library-details',
@@ -7,9 +11,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LibraryDetailsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
   }
 
+  nameLibrary = this.activatedRoute.snapshot.params["library"];
+
+  libraries: Array<Library> = libraries;
+  selectedLibrary = libraries.find(item => item.name === this.nameLibrary);
 }
