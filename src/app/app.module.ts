@@ -14,7 +14,7 @@ import { LibraryCardComponent } from './library-card/library-card.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

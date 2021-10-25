@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { Library } from "../Classes/Library";
+
 @Component({
   selector: 'app-library',
   templateUrl: './library-card.component.html',
@@ -7,13 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class LibraryCardComponent implements OnInit {
 
-  @Input() library: { id: number,
-                      name: string,
-                      description?: string,
-                      locale: string,
-                      address: string,
-                      organizationName?: string,
-                      imageUrl?: string }
+  @Input() library: Library;
 
   ngOnInit(): void {
   }
