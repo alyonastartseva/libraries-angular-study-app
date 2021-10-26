@@ -1,25 +1,35 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+
+import { LibraryService } from "./library.service";
 
 import { Library } from "./Classes/Library";
-import { libraries } from "./mock-libraries";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'libraries-angular-test-app';
+export class AppComponent implements OnInit {
 
-  librariesArray: Library[] = libraries;
-
-  /*Modal*/
-  newLibrary: Library = new Library("", "", "", "", "");
-
-  addLibrary() {
-    this.librariesArray.push(new Library(this.newLibrary.name, this.newLibrary.locale, this.newLibrary.address, this.newLibrary.organizationName, this.newLibrary.description));
-    
-    console.log(this.librariesArray)
+  constructor(private libraryService: LibraryService) {
   }
 
+  ngOnInit(): void {
+    this.getLibraries();
+  }
+
+  title = 'libraries-angular-test-app';
+
+  librariesArray: Library[] = [];
+  newLibrary: Library = new Library("", "", "", "", "");
+
+  getLibraries() {
+    this.libraryService.getLibraries()
+      .subscribe(librariesArray => this.librariesArray = librariesArray);
+  }
+
+  addLibrary() {
+    console.log(this.newLibrary);
+    /*this.libraryService.addLibrary(this.newLibrary);*/
+  }
 }
