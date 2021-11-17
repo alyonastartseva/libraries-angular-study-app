@@ -1,6 +1,6 @@
 export class Library {
 
-  imageUrl: string;
+  id: number;
 
   constructor(
     public name: string,
@@ -9,7 +9,7 @@ export class Library {
     public organizationName?: string,
     public description?: string,
   ) {
-    this.imageUrl = "https://all.culture.ru/uploads/f4141dae0c06262f263c4d0bbe86509c.jpg";
+    this.id = Date.now();
   }
 
 }

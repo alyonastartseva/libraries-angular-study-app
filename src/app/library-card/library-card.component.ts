@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { Library } from "../Classes/Library";
+import { Library } from "../classes/Library";
 
 @Component({
   selector: 'app-library',
@@ -10,8 +10,13 @@ import { Library } from "../Classes/Library";
 export class LibraryCardComponent implements OnInit {
 
   @Input() library: Library;
+  @Output() deleteLibrary = new EventEmitter();
 
   ngOnInit(): void {
+  }
+
+  delete() {
+    this.deleteLibrary.emit(this.library)
   }
 
 }

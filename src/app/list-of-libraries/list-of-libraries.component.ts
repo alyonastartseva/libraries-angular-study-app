@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Library } from "../Classes/Library";
-import { libraries } from "../mock-libraries";
+import { Library } from "../classes/Library";
+import { LibraryService } from '../services/library.service';
 
 @Component({
   selector: 'app-list-of-libraries',
@@ -10,17 +10,21 @@ import { libraries } from "../mock-libraries";
 })
 export class ListOfLibrariesComponent implements OnInit {
 
-  libraries: Array<Library> = libraries;
+  constructor(private libraryService: LibraryService) {}
+
+  libraries: Library[] = [];
 
   ngOnInit(): void {
+    this.getLibraries();
   }
 
-  addLibrary() {
-    console.log(`Библиотека добавлена`)
+  getLibraries(): void {
+    this.libraryService.getLibraries()
+        .subscribe(libraries => this.libraries = libraries);
   }
 
-  removeLibrary(name: string) {
-    console.log(`Библиотека ${name} удалена`)
+  delete(library: Library): void {
+    this.libraries = this.libraries.filter(l => l !== library);
+    this.libraryService.deleteHero(library.id).subscribe();
   }
-
 }

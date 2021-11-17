@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { libraries } from "../mock-libraries";
-import { Library } from "../Classes/Library";
+import { Library } from "../classes/Library";
+import { LibraryService } from '../services/library.service';
 
 @Component({
   selector: 'app-library-details',
@@ -11,13 +11,16 @@ import { Library } from "../Classes/Library";
 })
 export class LibraryDetailsComponent implements OnInit {
 
-  constructor(private activatedRoute: ActivatedRoute) {}
+  constructor(private activatedRoute: ActivatedRoute, private libraryService: LibraryService) {}
 
   ngOnInit(): void {
+    this.getLibraryById(this.idLibrary);
   }
 
-  nameLibrary = this.activatedRoute.snapshot.params["library"];
+  idLibrary = this.activatedRoute.snapshot.params["library"];
+  selectedLibrary: Library;
 
-  libraries: Array<Library> = libraries;
-  selectedLibrary = libraries.find(item => item.name === this.nameLibrary);
+  getLibraryById(id: number) {
+    this.libraryService.getLibrary(id).subscribe(selectedLibrary => this.selectedLibrary = selectedLibrary)
+  }
 }

@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
-import { LibraryService } from "./library.service";
-
-import { Library } from "./Classes/Library";
+import { LibraryService } from './services/library.service';
+import { Library } from "./classes/Library";
 
 @Component({
   selector: 'app-root',
@@ -11,8 +10,7 @@ import { Library } from "./Classes/Library";
 })
 export class AppComponent implements OnInit {
 
-  constructor(private libraryService: LibraryService) {
-  }
+  constructor(private libraryService: LibraryService) {}
 
   ngOnInit(): void {
     this.getLibraries();
@@ -29,7 +27,9 @@ export class AppComponent implements OnInit {
   }
 
   addLibrary() {
-    console.log(this.newLibrary);
-    /*this.libraryService.addLibrary(this.newLibrary);*/
+    this.libraryService.addLibrary(this.newLibrary)
+      .subscribe(library => {
+        this.librariesArray.push(new Library(library.name, library.locale, library.address, library.organizationName, library.description));
+      })
   }
 }
