@@ -20,7 +20,7 @@ export class LibraryDetailsComponent implements OnInit {
   idLibrary = this.activatedRoute.snapshot.params["library"];
   selectedLibrary: Library;
 
-  getLibraryById(id: number) {
+  getLibraryById(id: number): void {
     this.libraryService.getLibrary(id).subscribe(selectedLibrary => this.selectedLibrary = selectedLibrary)
   }
 }

@@ -22,8 +22,8 @@ export class InMemoryDataService implements InMemoryDbService {
     return { libraries };
   }
 
-  genId(libraries: Library[]): number {
-    return libraries.length > 0 ? Math.max(...libraries.map(library => library.id)) + 1 : Date.now();
-  }
+  // genId(libraries: Library[]): number {
+  //   return libraries.length > 0 ? Math.max(...libraries.map(library => library.id)) + 1 : Date.now();
+  // }
 
 }

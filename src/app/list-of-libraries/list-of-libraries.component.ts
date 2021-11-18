@@ -8,11 +8,12 @@ import { LibraryService } from '../services/library.service';
   templateUrl: './list-of-libraries.component.html',
   styleUrls: ['./list-of-libraries.component.scss']
 })
-export class ListOfLibrariesComponent implements OnInit {
+export class ListOfLibrariesComponent implements OnInit  {
 
   constructor(private libraryService: LibraryService) {}
 
   libraries: Library[] = [];
+  newLibrary: Library = new Library("", "", "", "", "");
 
   ngOnInit(): void {
     this.getLibraries();
@@ -21,6 +22,13 @@ export class ListOfLibrariesComponent implements OnInit {
   getLibraries(): void {
     this.libraryService.getLibraries()
         .subscribe(libraries => this.libraries = libraries);
+  }
+
+  addLibrary() {
+    this.libraryService.addLibrary(this.newLibrary)
+      .subscribe(library => {
+        this.libraries.push(new Library(library.name, library.locale, library.address, library.organizationName, library.description));
+      })
   }
 
   delete(library: Library): void {

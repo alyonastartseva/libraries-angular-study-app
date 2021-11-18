@@ -12,24 +12,7 @@ export class AppComponent implements OnInit {
 
   constructor(private libraryService: LibraryService) {}
 
-  ngOnInit(): void {
-    this.getLibraries();
-  }
+  ngOnInit(): void {}
 
   title = 'libraries-angular-test-app';
-
-  librariesArray: Library[] = [];
-  newLibrary: Library = new Library("", "", "", "", "");
-
-  getLibraries() {
-    this.libraryService.getLibraries()
-      .subscribe(librariesArray => this.librariesArray = librariesArray);
-  }
-
-  addLibrary() {
-    this.libraryService.addLibrary(this.newLibrary)
-      .subscribe(library => {
-        this.librariesArray.push(new Library(library.name, library.locale, library.address, library.organizationName, library.description));
-      })
-  }
 }

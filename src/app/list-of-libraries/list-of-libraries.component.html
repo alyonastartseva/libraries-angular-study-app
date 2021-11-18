@@ -1,5 +1,7 @@
 <div class="container">
 
+  <button class="btn btn-dark mb-3" data-bs-toggle="modal" data-bs-target="#CreateLibraryModal">Добавить библиотеку</button>
+
   <p *ngIf="!libraries.length; else areLibraries" class="text-center">Упс, библиотеки не найдены</p>
 
   <ng-template #areLibraries>
@@ -12,5 +14,49 @@
 
 </div>
 
+<app-modal [id]="'CreateLibraryModal'">
+  <span title>Добавить библиотеку</span>
+  <form body #createLibrary="ngForm" (ngSubmit)="addLibrary()">
+    <div class="mb-3">
+      <label for="nameLibrary" class="form-label">Название</label>
+      <input type="text" class="form-control" id="nameLibrary" [(ngModel)]="newLibrary.name" name="nameLibrary" #nameLibrary="ngModel" required>
+      <div [hidden]="nameLibrary.valid || nameLibrary.untouched" class="alert alert-danger">
+        Не указано название
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="descriptionLibrary" class="form-label">Описание</label>
+      <textarea class="form-control" id="descriptionLibrary" rows="3" [(ngModel)]="newLibrary.description" name="descriptionLibrary"></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="localeLibrary" class="form-label">Местоположение</label>
+      <input type="text" class="form-control" id="localeLibrary" [(ngModel)]="newLibrary.locale" name="localeLibrary" #localeLibrary="ngModel" required>
+      <div [hidden]="localeLibrary.valid || localeLibrary.untouched" class="alert alert-danger">
+        Не указано местоположение
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="addressLibrary" class="form-label">Адрес</label>
+      <textarea class="form-control" id="addressLibrary" rows="2" [(ngModel)]="newLibrary.address" name="addressLibrary" #addressLibrary="ngModel" required></textarea>
+      <div [hidden]="addressLibrary.valid || addressLibrary.untouched" class="alert alert-danger">
+        Не указан адрес
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="organizationName" class="form-label">Юридическое лицо</label>
+      <textarea class="form-control" id="organizationName" rows="2" [(ngModel)]="newLibrary.organizationName" name="organizationName"></textarea>
+    </div>
+    <div class="d-flex justify-content-between">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+      <button type="submit" class="btn btn-primary" [disabled]="nameLibrary.invalid || localeLibrary.invalid || addressLibrary.invalid" data-bs-target="#LibraryAddedModal" data-bs-toggle="modal" data-bs-dismiss="modal">Сохранить</button>
+    </div>
+  </form>
+</app-modal>
+
+<app-modal [id]="'LibraryAddedModal'">
+  <span title>Библиотека добавлена</span>
+  <p body>Библиотека <b>{{ newLibrary.name | uppercase }}</b> успешно добавлена в общий каталог.</p>
+  <button footer (click)="createLibrary.reset()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Закрыть</button>
+</app-modal>
 
 

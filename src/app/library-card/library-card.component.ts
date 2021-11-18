@@ -15,7 +15,7 @@ export class LibraryCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  delete() {
+  delete(): void {
     this.deleteLibrary.emit(this.library)
   }
 
