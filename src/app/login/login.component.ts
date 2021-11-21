@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
           console.log("Is Login Success: " + data);
 
           if (data) {
-            this.router.navigate(['/']);
+            this.router.navigate(['libraries']);
           }
           else {
             this.isForbidden = true;

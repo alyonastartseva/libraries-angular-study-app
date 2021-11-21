@@ -5,16 +5,9 @@ import { ListOfLibrariesComponent } from "./list-of-libraries/list-of-libraries.
 import { LibraryDetailsComponent } from "./library-details/library-details.component";
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
+import { DetailsOfLibraryGuard } from './details-of-library.guard';
 
 const routes: Routes = [
-    {
-      path: '',
-      component: ListOfLibrariesComponent
-    },
-    {
-      path: 'details/:library',
-      component: LibraryDetailsComponent
-    },
     {
       path: 'login',
       component: LoginComponent
@@ -24,8 +17,18 @@ const routes: Routes = [
       component: LogoutComponent
     },
     {
+      path: 'libraries',
+      component: ListOfLibrariesComponent,
+      canActivate: [DetailsOfLibraryGuard]
+    },
+    {
+      path: 'details/:library',
+      component: LibraryDetailsComponent,
+      canActivate: [DetailsOfLibraryGuard]
+    },
+    {
       path: '**',
-      redirectTo: '/'
+      redirectTo: '/login'
     }
   ];
 
