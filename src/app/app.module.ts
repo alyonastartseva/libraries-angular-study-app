@@ -11,6 +11,7 @@ import { ListOfLibrariesComponent } from './list-of-libraries/list-of-libraries.
 import { LibraryCardComponent } from './library-card/library-card.component';
 import { LibraryDetailsComponent } from './library-details/library-details.component';
 import { InMemoryDataService } from './services/in-memory-data.service';
+import { LoaderComponent } from './shared/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { InMemoryDataService } from './services/in-memory-data.service';
     ModalComponent,
     ListOfLibrariesComponent,
     LibraryCardComponent,
-    LibraryDetailsComponent
+    LibraryDetailsComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

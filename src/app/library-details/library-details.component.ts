@@ -18,9 +18,14 @@ export class LibraryDetailsComponent implements OnInit {
   }
 
   selectedLibrary: ILibrary;
+  loading = true;
 
   getLibraryById(): void {
     const id = parseInt(this.activatedRoute.snapshot.paramMap.get('library')!, 10);
-    this.libraryService.getLibrary(id).subscribe(selectedLibrary => this.selectedLibrary = selectedLibrary)
+    this.libraryService.getLibrary(id)
+      .subscribe(selectedLibrary => {
+        this.selectedLibrary = selectedLibrary;
+        this.loading = false;
+      })
   }
 }

@@ -20,13 +20,18 @@ export class ListOfLibrariesComponent implements OnInit  {
     locale: ''
   };
 
+  loading = true;
+
   ngOnInit(): void {
     this.getLibraries();
   }
 
   getLibraries(): void {
     this.libraryService.getLibraries()
-        .subscribe(libraries => this.libraries = libraries);
+        .subscribe(libraries => {
+          this.libraries = libraries;
+          this.loading = false;
+        });
   }
 
   addLibrary() {

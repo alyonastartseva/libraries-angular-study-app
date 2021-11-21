@@ -1,15 +1,20 @@
 <div class="container">
 
-  <button class="btn btn-dark mb-3" data-bs-toggle="modal" data-bs-target="#CreateLibraryModal">Добавить библиотеку</button>
+  <app-loader *ngIf="loading else loaded"></app-loader>
 
-  <p *ngIf="!libraries.length; else areLibraries" class="text-center">Библиотеки не найдены</p>
+  <ng-template #loaded>
+    <button class="btn btn-dark mb-3" data-bs-toggle="modal" data-bs-target="#CreateLibraryModal">Добавить библиотеку</button>
+    
+    <p *ngIf="!libraries.length; else areLibraries" class="text-center">Библиотеки не найдены</p>
 
-  <ng-template #areLibraries>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-      <div *ngFor="let library of libraries" class="col">
-        <app-library (deleteLibrary)="delete($event)" [library]="library"></app-library>
+    <ng-template #areLibraries>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div *ngFor="let library of libraries" class="col">
+          <app-library (deleteLibrary)="delete($event)" [library]="library"></app-library>
+        </div>
       </div>
-    </div>
+    </ng-template>
+
   </ng-template>
 
 </div>
