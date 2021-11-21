@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ListOfLibrariesComponent } from "./list-of-libraries/list-of-libraries.component";
-import { LibraryDetailsComponent } from "./library-details/library-details.component";
-import { LoginComponent } from './login/login.component';
-import { LogoutComponent } from './logout/logout.component';
-import { DetailsOfLibraryGuard } from './details-of-library.guard';
+import { ListOfLibrariesComponent } from "./components/list-of-libraries/list-of-libraries.component";
+import { LibraryDetailsComponent } from "./components/library-details/library-details.component";
+import { LoginComponent } from './components/auth/login/login.component';
+import { LogoutComponent } from './components/auth/logout/logout.component';
+import { DetailsOfLibraryGuard } from './guards/details-of-library.guard';
 
 const routes: Routes = [
     {

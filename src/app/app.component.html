@@ -3,10 +3,10 @@
     <a routerLink="libraries" class="navbar-brand">Каталог</a>
 
     <div *ngIf="isUserLoggedIn; else isLogOut">
-      <a class="nav-link" routerLink="/logout">Выйти</a>
+      <a class="nav-link" routerLink="logout">Выйти</a>
     </div>
     <ng-template #isLogOut>
-      <a class="nav-link" routerLink="/login">Войти</a>
+      <a class="nav-link" routerLink="login">Войти</a>
     </ng-template>
   </div>
 </nav>

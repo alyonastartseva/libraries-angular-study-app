@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { ILibrary } from "../interfaces/Library";
+import { ILibrary } from "../../interfaces/Library";
 
 @Component({
   selector: 'app-library',

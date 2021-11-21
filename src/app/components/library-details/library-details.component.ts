@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { ILibrary } from "../interfaces/Library";
-import { LibraryService } from '../services/library.service';
+import { ILibrary } from "../../interfaces/Library";
+import { LibraryService } from '../../services/library.service';
 
 @Component({
   selector: 'app-library-details',

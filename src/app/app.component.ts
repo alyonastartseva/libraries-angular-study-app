@@ -1,9 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 
-import { LibraryService } from './services/library.service';
-import { ILibrary } from "./interfaces/Library";
-import { AuthService } from './services/auth.service';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -25,7 +21,6 @@ export class AppComponent implements OnInit {
     else {
       this.isUserLoggedIn = false;
     }
-    
   }
 
 }

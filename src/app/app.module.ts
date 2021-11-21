@@ -7,13 +7,13 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { AppComponent } from './app.component';
 import { ModalComponent } from './shared/modal/modal.component';
-import { ListOfLibrariesComponent } from './list-of-libraries/list-of-libraries.component';
-import { LibraryCardComponent } from './library-card/library-card.component';
-import { LibraryDetailsComponent } from './library-details/library-details.component';
+import { ListOfLibrariesComponent } from './components/list-of-libraries/list-of-libraries.component';
+import { LibraryCardComponent } from './components/library-card/library-card.component';
+import { LibraryDetailsComponent } from './components/library-details/library-details.component';
 import { InMemoryDataService } from './services/in-memory-data.service';
 import { LoaderComponent } from './shared/loader/loader.component';
-import { LoginComponent } from './login/login.component';
-import { LogoutComponent } from './logout/logout.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { LogoutComponent } from './components/auth/logout/logout.component';
 
 @NgModule({
   declarations: [
