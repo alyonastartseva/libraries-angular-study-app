@@ -12,6 +12,8 @@ import { LibraryCardComponent } from './library-card/library-card.component';
 import { LibraryDetailsComponent } from './library-details/library-details.component';
 import { InMemoryDataService } from './services/in-memory-data.service';
 import { LoaderComponent } from './shared/loader/loader.component';
+import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { LoaderComponent } from './shared/loader/loader.component';
     ListOfLibrariesComponent,
     LibraryCardComponent,
     LibraryDetailsComponent,
-    LoaderComponent
+    LoaderComponent,
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ListOfLibrariesComponent } from "./list-of-libraries/list-of-libraries.component";
 import { LibraryDetailsComponent } from "./library-details/library-details.component";
+import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
 
 const routes: Routes = [
     {
@@ -12,6 +14,14 @@ const routes: Routes = [
     {
       path: 'details/:library',
       component: LibraryDetailsComponent
+    },
+    {
+      path: 'login',
+      component: LoginComponent
+    },
+    {
+      path: 'logout',
+      component: LogoutComponent
     },
     {
       path: '**',

@@ -1,0 +1,35 @@
+<div class="container mt-3">
+  <div class="row d-flex justify-content-center align-items-center">
+    <div class="col-md-6">
+      <h3>Вход</h3>
+      <form #login="ngForm" (ngSubmit)="onClickSubmit()">
+        <div class="mb-3">
+          <label for="username" class="form-label">
+            Имя пользователя
+          </label>
+          <input type="text" class="form-control" id="username" [(ngModel)]="user.username" name="username" #username="ngModel" placeholder="Имя пользователя" required>
+          <div [hidden]="username.valid || username.untouched" class="alert alert-danger">
+            Не указано имя пользователя
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">
+            Пароль
+          </label>
+          <input type="password" class="form-control" id="password" [(ngModel)]="user.password" name="password" placeholder="Пароль" #password="ngModel" required>
+          <div [hidden]="password.valid || password.untouched" class="alert alert-danger">
+            Не указан пароль
+          </div>
+        </div>
+        <div *ngIf="isForbidden" class="alert alert-warning" role="alert">
+          Неправильное имя пользователя или пароль
+        </div>
+        <button type="submit" [disabled]="username.invalid || password.invalid" class="btn btn-primary">Войти</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
