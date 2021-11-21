@@ -2,7 +2,7 @@
 
   <button class="btn btn-dark mb-3" data-bs-toggle="modal" data-bs-target="#CreateLibraryModal">Добавить библиотеку</button>
 
-  <p *ngIf="!libraries.length; else areLibraries" class="text-center">Упс, библиотеки не найдены</p>
+  <p *ngIf="!libraries.length; else areLibraries" class="text-center">Библиотеки не найдены</p>
 
   <ng-template #areLibraries>
     <div class="row row-cols-1 row-cols-md-3 g-4">

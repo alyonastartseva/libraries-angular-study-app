@@ -30,7 +30,11 @@ export class ListOfLibrariesComponent implements OnInit  {
   }
 
   addLibrary() {
-    this.libraryService.addLibrary( { name: this.newLibrary.name, address: this.newLibrary.address, locale: this.newLibrary.locale, organizationName: this.newLibrary.organizationName, description: this.newLibrary.description }  as ILibrary)
+    this.libraryService.addLibrary({ name: this.newLibrary.name,
+                                     address: this.newLibrary.address,
+                                     locale: this.newLibrary.locale,
+                                     organizationName: this.newLibrary.organizationName,
+                                     description: this.newLibrary.description }  as ILibrary)
       .subscribe(library => {
         this.libraries.push(library);
       })
