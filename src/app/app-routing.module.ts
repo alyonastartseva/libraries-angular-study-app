@@ -12,6 +12,10 @@ const routes: Routes = [
     {
       path: 'details/:library',
       component: LibraryDetailsComponent
+    },
+    {
+      path: '**',
+      redirectTo: '/'
     }
   ];
 
