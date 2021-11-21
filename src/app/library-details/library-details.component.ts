@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ILibrary } from "../interfaces/Library";
 import { LibraryService } from '../services/library.service';
@@ -11,7 +11,7 @@ import { LibraryService } from '../services/library.service';
 })
 export class LibraryDetailsComponent implements OnInit {
 
-  constructor(private activatedRoute: ActivatedRoute, private libraryService: LibraryService) {}
+  constructor(private activatedRoute: ActivatedRoute, private libraryService: LibraryService, private router: Router) {}
 
   ngOnInit(): void {
     this.getLibraryById();
@@ -27,5 +27,9 @@ export class LibraryDetailsComponent implements OnInit {
         this.selectedLibrary = selectedLibrary;
         this.loading = false;
       })
+  }
+
+  goBack(): void {
+    this.router.navigate(['libraries']);
   }
 }

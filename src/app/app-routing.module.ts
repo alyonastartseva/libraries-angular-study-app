@@ -6,7 +6,7 @@ import { LibraryDetailsComponent } from "./library-details/library-details.compo
 
 const routes: Routes = [
     {
-      path: '',
+      path: 'libraries',
       component: ListOfLibrariesComponent
     },
     {
