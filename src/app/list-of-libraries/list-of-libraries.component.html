@@ -18,7 +18,10 @@
   <span title>Добавить библиотеку</span>
   <form body #createLibrary="ngForm" (ngSubmit)="addLibrary()">
     <div class="mb-3">
-      <label for="nameLibrary" class="form-label">Название</label>
+      <label for="nameLibrary" class="form-label">
+        Название
+        <span class=required>*</span>
+      </label>
       <input type="text" class="form-control" id="nameLibrary" [(ngModel)]="newLibrary.name" name="nameLibrary" #nameLibrary="ngModel" required>
       <div [hidden]="nameLibrary.valid || nameLibrary.untouched" class="alert alert-danger">
         Не указано название
@@ -29,14 +32,20 @@
       <textarea class="form-control" id="descriptionLibrary" rows="3" [(ngModel)]="newLibrary.description" name="descriptionLibrary"></textarea>
     </div>
     <div class="mb-3">
-      <label for="localeLibrary" class="form-label">Местоположение</label>
+      <label for="localeLibrary" class="form-label">
+        Местоположение
+        <span class="required">*</span>
+      </label>
       <input type="text" class="form-control" id="localeLibrary" [(ngModel)]="newLibrary.locale" name="localeLibrary" #localeLibrary="ngModel" required>
       <div [hidden]="localeLibrary.valid || localeLibrary.untouched" class="alert alert-danger">
         Не указано местоположение
       </div>
     </div>
     <div class="mb-3">
-      <label for="addressLibrary" class="form-label">Адрес</label>
+      <label for="addressLibrary" class="form-label">
+        Адрес
+        <span class="required">*</span>
+      </label>
       <textarea class="form-control" id="addressLibrary" rows="2" [(ngModel)]="newLibrary.address" name="addressLibrary" #addressLibrary="ngModel" required></textarea>
       <div [hidden]="addressLibrary.valid || addressLibrary.untouched" class="alert alert-danger">
         Не указан адрес
