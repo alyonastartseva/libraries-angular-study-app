@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Library } from "../classes/Library";
+import { ILibrary } from "../interfaces/Library";
 import { LibraryService } from '../services/library.service';
 
 @Component({
@@ -12,8 +12,13 @@ export class ListOfLibrariesComponent implements OnInit  {
 
   constructor(private libraryService: LibraryService) {}
 
-  libraries: Library[] = [];
-  newLibrary: Library = new Library("", "", "", "", "");
+  libraries: ILibrary[] = [];
+  newLibrary: ILibrary = {
+    id: 0,
+    name: '',
+    address: '',
+    locale: ''
+  };
 
   ngOnInit(): void {
     this.getLibraries();
@@ -25,13 +30,13 @@ export class ListOfLibrariesComponent implements OnInit  {
   }
 
   addLibrary() {
-    this.libraryService.addLibrary(this.newLibrary)
+    this.libraryService.addLibrary( { name: this.newLibrary.name, address: this.newLibrary.address, locale: this.newLibrary.locale, organizationName: this.newLibrary.organizationName, description: this.newLibrary.description }  as ILibrary)
       .subscribe(library => {
-        this.libraries.push(new Library(library.name, library.locale, library.address, library.organizationName, library.description));
+        this.libraries.push(library);
       })
   }
 
-  delete(library: Library): void {
+  delete(library: ILibrary): void {
     this.libraries = this.libraries.filter(l => l !== library);
     this.libraryService.deleteHero(library.id).subscribe();
   }

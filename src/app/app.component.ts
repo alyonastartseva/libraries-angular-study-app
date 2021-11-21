@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
 import { LibraryService } from './services/library.service';
-import { Library } from "./classes/Library";
+import { ILibrary } from "./interfaces/Library";
 
 @Component({
   selector: 'app-root',

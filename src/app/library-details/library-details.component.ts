@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Library } from "../classes/Library";
+import { ILibrary } from "../interfaces/Library";
 import { LibraryService } from '../services/library.service';
 
 @Component({
@@ -14,13 +14,13 @@ export class LibraryDetailsComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private libraryService: LibraryService) {}
 
   ngOnInit(): void {
-    this.getLibraryById(this.idLibrary);
+    this.getLibraryById();
   }
 
-  idLibrary = this.activatedRoute.snapshot.params["library"];
-  selectedLibrary: Library;
+  selectedLibrary: ILibrary;
 
-  getLibraryById(id: number): void {
+  getLibraryById(): void {
+    const id = parseInt(this.activatedRoute.snapshot.paramMap.get('library')!, 10);
     this.libraryService.getLibrary(id).subscribe(selectedLibrary => this.selectedLibrary = selectedLibrary)
   }
 }

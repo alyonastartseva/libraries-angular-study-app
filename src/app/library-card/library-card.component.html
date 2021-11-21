@@ -2,7 +2,9 @@
   <div class="card-body flex-column d-flex align-content-between justify-content-between">
     <h5 class="card-title">{{ library.name }}</h5>
     <p class="card-text">{{ library.description }}</p>
-    <button [routerLink]="['details/', this.library.id]" class="btn btn-outline-secondary">Подробнее</button>
-    <button class="btn btn-danger" (click)="delete()">Удалить</button>
+    <div class="d-flex justify-content-between">
+      <button routerLink="/details/{{library.id}}" class="btn btn-outline-secondary">Подробнее</button>
+      <button class="btn btn-danger" (click)="delete()">Удалить</button>
+    </div>
   </div>
 </div>

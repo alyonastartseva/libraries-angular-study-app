@@ -3,8 +3,7 @@ import {Observable, of} from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Library } from '../classes/Library';
-import { libraries } from '../shared/mock-libraries';
+import { ILibrary } from '../interfaces/Library';
 
 @Injectable({
   providedIn: 'root'
@@ -19,31 +18,31 @@ export class LibraryService {
 
   private librariesUrl = 'api/libraries';
 
-  getLibraries(): Observable<Library[]> {
-    return this.http.get<Library[]>(this.librariesUrl)
+  getLibraries(): Observable<ILibrary[]> {
+    return this.http.get<ILibrary[]>(this.librariesUrl)
       .pipe(
-        catchError(this.handleError<Library[]>('getLibraries', []))
+        catchError(this.handleError<ILibrary[]>('getLibraries', []))
       );
   }
 
-  getLibrary(id: number): Observable<Library> {
+  getLibrary(id: number): Observable<ILibrary> {
     const url = `${this.librariesUrl}/${id}`;
-    return this.http.get<Library>(url).pipe(
-      catchError(this.handleError<Library>(`getHero id=${id}`))
+    return this.http.get<ILibrary>(url).pipe(
+      catchError(this.handleError<ILibrary>(`getHero id=${id}`))
     );
   }
 
-  addLibrary(library: Library): Observable<Library> {
-    return this.http.post<Library>(this.librariesUrl, library, this.httpOptions).pipe(
-      catchError(this.handleError<Library>('addHero'))
+  addLibrary(library: ILibrary): Observable<ILibrary> {
+    return this.http.post<ILibrary>(this.librariesUrl, library, this.httpOptions).pipe(
+      catchError(this.handleError<ILibrary>('addHero'))
     );
   }
 
-  deleteHero(id: number): Observable<Library> {
+  deleteHero(id: number): Observable<ILibrary> {
     const url = `${this.librariesUrl}/${id}`;
 
-    return this.http.delete<Library>(url, this.httpOptions).pipe(
-      catchError(this.handleError<Library>('deleteHero'))
+    return this.http.delete<ILibrary>(url, this.httpOptions).pipe(
+      catchError(this.handleError<ILibrary>('deleteHero'))
     );
   }
 
