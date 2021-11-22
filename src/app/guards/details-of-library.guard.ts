@@ -22,15 +22,16 @@ export class DetailsOfLibraryGuard implements CanActivate {
     console.log("Url: " + url)
 
     let isUserLoggedIn = localStorage.getItem('isUserLoggedIn');
-
     console.log(isUserLoggedIn)
-    if(isUserLoggedIn != null && isUserLoggedIn === "true"){
-       if(url == "login")
-          return this.router.parseUrl('libraries');
-       else
-          return true;
-    } else {
-       return this.router.parseUrl('login');
+
+    if(isUserLoggedIn != null && isUserLoggedIn == "true") {
+      if (url == "login")
+        return this.router.parseUrl('libraries');
+      else
+        return true;
+    }
+    else {
+      return this.router.parseUrl('login');
     }
  }
 
