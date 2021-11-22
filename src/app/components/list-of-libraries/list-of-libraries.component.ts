@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ILibrary } from "../../interfaces/Library";
-import { AuthService } from '../../services/auth.service';
 import { LibraryService } from '../../services/library.service';
 
 @Component({
@@ -49,5 +48,9 @@ export class ListOfLibrariesComponent implements OnInit  {
   delete(library: ILibrary): void {
     this.libraries = this.libraries.filter(l => l !== library);
     this.libraryService.deleteHero(library.id).subscribe();
+  }
+
+  identify(index: number, library: ILibrary): number {
+    return library.id;
   }
 }

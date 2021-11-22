@@ -14,6 +14,7 @@ import { InMemoryDataService } from './services/in-memory-data.service';
 import { LoaderComponent } from './shared/loader/loader.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { LogoutComponent } from './components/auth/logout/logout.component';
+import { DetailsOfLibraryGuard } from './guards/details-of-library.guard';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { LogoutComponent } from './components/auth/logout/logout.component';
       InMemoryDataService, { dataEncapsulation: false }
     )
   ],
-  providers: [],
+  providers: [DetailsOfLibraryGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
