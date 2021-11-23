@@ -1,19 +1,16 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-import { ILibrary } from "../../interfaces/Library";
+import { ILibrary } from "../../../core/interfaces/Library";
 
 @Component({
   selector: 'app-library',
   templateUrl: './library-card.component.html',
   styleUrls: ['./library-card.component.scss']
 })
-export class LibraryCardComponent implements OnInit {
+export class LibraryCardComponent {
 
   @Input() library: ILibrary;
   @Output() deleteLibrary = new EventEmitter();
-
-  ngOnInit(): void {
-  }
 
   delete(): void {
     this.deleteLibrary.emit(this.library)

@@ -7,14 +7,13 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { AppComponent } from './app.component';
 import { ModalComponent } from './shared/modal/modal.component';
-import { ListOfLibrariesComponent } from './components/list-of-libraries/list-of-libraries.component';
-import { LibraryCardComponent } from './components/library-card/library-card.component';
-import { LibraryDetailsComponent } from './components/library-details/library-details.component';
-import { InMemoryDataService } from './services/in-memory-data.service';
+import { ListOfLibrariesComponent } from './library/components/list-of-libraries/list-of-libraries.component';
+import { LibraryCardComponent } from './library/components/library-card/library-card.component';
+import { LibraryDetailsComponent } from './library/components/library-details/library-details.component';
+import { InMemoryDataService } from './core/in-memory-data.service';
 import { LoaderComponent } from './shared/loader/loader.component';
-import { LoginComponent } from './components/auth/login/login.component';
-import { LogoutComponent } from './components/auth/logout/logout.component';
-import { DetailsOfLibraryGuard } from './guards/details-of-library.guard';
+import { DetailsOfLibraryGuard } from './library/guards/details-of-library.guard';
+import { AuthModule } from './core/auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -23,9 +22,7 @@ import { DetailsOfLibraryGuard } from './guards/details-of-library.guard';
     ListOfLibrariesComponent,
     LibraryCardComponent,
     LibraryDetailsComponent,
-    LoaderComponent,
-    LoginComponent,
-    LogoutComponent
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +31,8 @@ import { DetailsOfLibraryGuard } from './guards/details-of-library.guard';
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
-    )
+    ),
+    AuthModule
   ],
   providers: [DetailsOfLibraryGuard],
   bootstrap: [AppComponent]

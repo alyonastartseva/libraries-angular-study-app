@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { ILibrary } from "../../interfaces/Library";
+import { ILibrary } from "../../../core/interfaces/Library";
 import { LibraryService } from '../../services/library.service';
 
 @Component({
@@ -13,12 +13,12 @@ export class LibraryDetailsComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, private libraryService: LibraryService, private router: Router) {}
 
+  selectedLibrary: ILibrary;
+  loading = true;
+
   ngOnInit(): void {
     this.getLibraryById();
   }
-
-  selectedLibrary: ILibrary;
-  loading = true;
 
   getLibraryById(): void {
     const id = parseInt(this.activatedRoute.snapshot.paramMap.get('library')!, 10);

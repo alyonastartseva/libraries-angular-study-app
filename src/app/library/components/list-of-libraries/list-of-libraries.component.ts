@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ILibrary } from "../../interfaces/Library";
+import { ILibrary } from "../../../core/interfaces/Library";
 import { LibraryService } from '../../services/library.service';
 
 @Component({
