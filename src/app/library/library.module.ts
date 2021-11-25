@@ -7,13 +7,15 @@ import { LibraryCardComponent } from "./components/library-card/library-card.com
 import { LibraryDetailsComponent } from "./components/library-details/library-details.component";
 import { ListOfLibrariesComponent } from "./components/list-of-libraries/list-of-libraries.component";
 import { SharedModule } from "../shared/shared.module";
+import { EmployeesModule } from "../employees/employees.module";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     RouterModule,
-    SharedModule
+    SharedModule,
+    EmployeesModule
   ],
   declarations: [
     ListOfLibrariesComponent,
