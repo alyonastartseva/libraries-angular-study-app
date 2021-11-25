@@ -1,28 +1,38 @@
 <div class="container">
 
-  <app-loader *ngIf="loading else loaded"></app-loader>
+  <div class="content">
+    <app-loader *ngIf="loading else loaded"></app-loader>
 
-  <ng-template #loaded>
-    <table class="table table-striped table-hover">
-      <thead>
-      <tr>
-        <th scope="col">Название</th>
-        <th scope="col">Описание</th>
-        <th scope="col">Местоположение</th>
-        <th scope="col">Адрес</th>
-        <th scope="col">Юридическое лицо</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>{{ selectedLibrary?.name }}</td>
-        <td>{{ selectedLibrary?.description }}</td>
-        <td>{{ selectedLibrary?.locale }}</td>
-        <td>{{ selectedLibrary?.address }}</td>
-        <td>{{ selectedLibrary?.organizationName }}</td>
-      </tr>
-      </tbody>
-    </table>
-    <button type="button" class="btn btn-secondary" (click)="goBack()">Назад</button>
-  </ng-template>
+    <ng-template #loaded>
+      <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+          <th scope="col">Название</th>
+          <th scope="col">Описание</th>
+          <th scope="col">Местоположение</th>
+          <th scope="col">Адрес</th>
+          <th scope="col">Юридическое лицо</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>{{ selectedLibrary?.name }}</td>
+          <td>{{ selectedLibrary?.description }}</td>
+          <td>{{ selectedLibrary?.locale }}</td>
+          <td>{{ selectedLibrary?.address }}</td>
+          <td>{{ selectedLibrary?.organizationName }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </ng-template>
+  </div>
+
+  <div class="footer d-flex justify-content-between">
+    <div class="library-buttons">
+      <button type="button" class="library__change btn btn-outline-dark">Редактировать</button>
+      <button type="button" class="library__employees btn btn-outline-dark" routerLink="details/{{selectedLibrary.id}}/employees">Сотрудники</button>
+    </div>
+
+    <button type="button" class="btn btn-outline-secondary" (click)="goBack()">Назад</button>
+  </div>
 </div>

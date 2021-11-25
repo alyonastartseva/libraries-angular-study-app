@@ -3,8 +3,9 @@ import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 
-import { EmployeesComponent } from "./employees.component";
+
 import { SharedModule } from "../shared/shared.module";
+import { ListOfEmployeesComponent } from "./list-of-employees/list-of-employees.component";
 
 @NgModule({
   imports: [
@@ -14,10 +15,10 @@ import { SharedModule } from "../shared/shared.module";
     SharedModule
   ],
   declarations: [
-    EmployeesComponent
+    ListOfEmployeesComponent
   ],
   exports: [
-    EmployeesComponent
+    ListOfEmployeesComponent
   ]
 })
 export class EmployeesModule {}

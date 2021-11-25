@@ -4,12 +4,13 @@ import { RouterModule, Routes } from "@angular/router";
 import { ListOfLibrariesComponent } from "./components/list-of-libraries/list-of-libraries.component";
 import { AccessToLibraries } from "../core/auth/guards/access-to-library.guard";
 import { LibraryDetailsComponent } from "./components/library-details/library-details.component";
+import { EmployeesRoutingModule } from "../employees/employees-routing.module";
 
 const routes: Routes = [
   {
     path: 'libraries',
     component: ListOfLibrariesComponent,
-    canActivate: [AccessToLibraries]
+    canActivate: [AccessToLibraries],
   },
   {
     path: 'details/:library',
@@ -19,7 +20,10 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forChild(routes),
+    EmployeesRoutingModule
+  ],
   providers: [AccessToLibraries]
 })
-export class LibraryRoutingModule {}
+export class LibrariesRoutingModule {}
