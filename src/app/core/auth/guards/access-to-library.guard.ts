@@ -16,10 +16,7 @@ export class AccessToLibraries implements CanActivate {
     }
 
   checkLogin(url: string): true | UrlTree {
-    console.log("Url: " + url)
-
     let isUserLoggedIn = localStorage.getItem('isUserLoggedIn');
-    console.log(isUserLoggedIn)
 
     if(isUserLoggedIn != null && isUserLoggedIn == "true") {
       if (url == "login") {

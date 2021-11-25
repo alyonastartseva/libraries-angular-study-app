@@ -9,6 +9,7 @@ import { LibrariesModule } from './library/libraries.module';
 import { AuthModule } from './core/auth/auth.module';
 import { AppRoutingModule } from './app-routing.module';
 import { InMemoryDataService } from './core/in-memory-data.service';
+import { EmployeesRoutingModule } from './employees/employees-routing.module';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { InMemoryDataService } from './core/in-memory-data.service';
     ),
     AuthModule,
     LibrariesModule,
+    EmployeesRoutingModule,
     AppRoutingModule
   ],
   declarations: [

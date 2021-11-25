@@ -4,6 +4,7 @@ import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { ILibrary } from '../../core/interfaces/Library';
+import { IEmployee } from 'src/app/core/interfaces/employee';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,7 @@ export class LibraryService {
       );
   }
 
-  getLibrary(id: number): Observable<ILibrary> {
+  getLibrary(id: number | undefined): Observable<ILibrary> {
     const url = `${this.librariesUrl}/${id}`;
     return this.http.get<ILibrary>(url).pipe(
       catchError(this.handleError<ILibrary>(`getHero id=${id}`))

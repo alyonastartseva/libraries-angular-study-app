@@ -5,7 +5,7 @@ import { RouterModule } from "@angular/router";
 
 
 import { SharedModule } from "../shared/shared.module";
-import { ListOfEmployeesComponent } from "./list-of-employees/list-of-employees.component";
+import { ListOfEmployeesComponent } from "./components/list-of-employees/list-of-employees.component";
 
 @NgModule({
   imports: [

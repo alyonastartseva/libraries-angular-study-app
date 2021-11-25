@@ -1,6 +1,7 @@
-export interface Employee {
+export interface IEmployee {
 
   id: number;
+  idLibrary: number;
   firstName: string;
   lastName: string;
   position: string;

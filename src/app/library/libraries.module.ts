@@ -8,7 +8,6 @@ import { LibraryDetailsComponent } from "./components/library-details/library-de
 import { ListOfLibrariesComponent } from "./components/list-of-libraries/list-of-libraries.component";
 import { SharedModule } from "../shared/shared.module";
 import { EmployeesModule } from "../employees/employees.module";
-import { LibraryService } from "./services/library.service";
 
 @NgModule({
   imports: [

@@ -18,7 +18,6 @@ export class ListOfLibrariesComponent implements OnInit  {
     name: '',
     address: '',
     locale: '',
-    employees: []
   };
 
   loading = true;

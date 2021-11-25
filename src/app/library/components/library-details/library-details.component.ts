@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 
 import { ILibrary } from "../../../core/interfaces/Library";
 import { LibraryService } from '../../services/library.service';
@@ -11,17 +12,21 @@ import { LibraryService } from '../../services/library.service';
 })
 export class LibraryDetailsComponent implements OnInit {
 
-  constructor(private activatedRoute: ActivatedRoute, private libraryService: LibraryService, private router: Router) {}
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private libraryService: LibraryService) {}
 
+  id: number | undefined;
   selectedLibrary: ILibrary;
   loading = true;
 
-  ngOnInit(): void {
-    this.getLibraryById();
+  ngOnInit() {
+    this.activatedRoute.paramMap.pipe(
+        switchMap(params => params.getAll('library'))
+    )
+    .subscribe(data=> this.id = +data);
+    this.getLibraryById(this.id)
   }
 
-  getLibraryById(): void {
-    const id = parseInt(this.activatedRoute.snapshot.paramMap.get('library')!, 10);
+  getLibraryById(id: number | undefined): void {
     this.libraryService.getLibrary(id)
       .subscribe(selectedLibrary => {
         this.selectedLibrary = selectedLibrary;

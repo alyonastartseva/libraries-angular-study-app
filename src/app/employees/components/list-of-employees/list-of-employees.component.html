@@ -1,0 +1,42 @@
+<div class="container">
+
+  <div class="content">
+    <app-loader *ngIf="loading else loaded"></app-loader>
+
+    <ng-template #loaded>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Имя</th>
+            <th scope="col">Фамилия</th>
+            <th scope="col">Должность</th>
+            <th scope="col">Адрес</th>
+            <th scope="col">Начало работы</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Иван</td>
+            <td>Иванов</td>
+            <td>Библиотекарь</td>
+            <td>г.Новосибирск, ул.Ленина, 3а</td>
+            <td>12.12.2012</td>
+            <td>
+              <button type="button" class="btn btn-danger">Удалить</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-template>
+  </div>
+
+  <div class="footer d-flex justify-content-between">
+    <div class="employees-buttons">
+      <button type="button" class="employees__add btn btn-outline-dark">Добавить</button>
+      <button type="button" class="employees__change btn btn-outline-dark">Редактировать</button>
+    </div>
+
+    <button type="button" class="btn btn-outline-secondary" (click)="goBack()">Назад</button>
+</div>

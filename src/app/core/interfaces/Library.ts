@@ -1,5 +1,3 @@
-import { Employee } from "./employee";
-
 export interface ILibrary {
 
   id: number;
@@ -8,6 +6,5 @@ export interface ILibrary {
   address: string;
   organizationName?: string;
   description?: string;
-  employees: Employee[];
 
 }
