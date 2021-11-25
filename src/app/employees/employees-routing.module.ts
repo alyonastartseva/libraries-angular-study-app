@@ -5,7 +5,7 @@ import { ListOfEmployeesComponent } from "./components/list-of-employees/list-of
 
 const routes: Routes = [
   {
-    path: 'details/:library/employees',
+    path: 'libraries/details/:library/employees',
     component: ListOfEmployeesComponent
   }
 ]

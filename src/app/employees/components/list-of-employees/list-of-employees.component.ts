@@ -27,6 +27,6 @@ export class ListOfEmployeesComponent implements OnInit {
   }
 
    goBack(): void {
-    this.router.navigate([`details/${this.idLibrary}`]);
+    this.router.navigate([`/libraries/details/${this.idLibrary}`]);
   }
 }

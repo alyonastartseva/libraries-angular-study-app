@@ -12,7 +12,7 @@ const routes: Routes = [
     canActivate: [AccessToLibraries],
   },
   {
-    path: 'details/:library',
+    path: 'libraries/details/:library',
     component: LibraryDetailsComponent,
     canActivate: [AccessToLibraries]
   }
