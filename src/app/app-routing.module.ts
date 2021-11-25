@@ -1,39 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ListOfLibrariesComponent } from "./library/components/list-of-libraries/list-of-libraries.component";
-import { LibraryDetailsComponent } from "./library/components/library-details/library-details.component";
-import { LoginComponent } from './components/auth/login/login.component';
-import { LogoutComponent } from './components/auth/logout/logout.component';
-import { DetailsOfLibraryGuard } from './library/guards/details-of-library.guard';
+import { AuthRoutingModule } from './core/auth/auth-routing.module';
+import { LibraryRoutingModule } from './library/library-routing.module';
 
 const routes: Routes = [
     {
-      path: 'login',
-      component: LoginComponent
-    },
-    {
-      path: 'logout',
-      component: LogoutComponent
-    },
-    {
-      path: 'libraries',
-      component: ListOfLibrariesComponent,
-      canActivate: [DetailsOfLibraryGuard]
-    },
-    {
-      path: 'details/:library',
-      component: LibraryDetailsComponent,
-      canActivate: [DetailsOfLibraryGuard]
-    },
-    {
       path: '**',
-      redirectTo: '/login'
+      redirectTo: 'login'
     }
   ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes),
+    AuthRoutingModule,
+    LibraryRoutingModule
+  ],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

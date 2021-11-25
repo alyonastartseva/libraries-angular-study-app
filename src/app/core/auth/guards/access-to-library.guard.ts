@@ -4,7 +4,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTr
 @Injectable({
   providedIn: 'root'
 })
-export class DetailsOfLibraryGuard implements CanActivate {
+export class AccessToLibraries implements CanActivate {
 
   constructor(private router: Router) {}
 
