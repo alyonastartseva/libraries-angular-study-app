@@ -1,0 +1,38 @@
+<div class="container">
+  <app-loader *ngIf="loading else loaded"></app-loader>
+
+  <ng-template #loaded>
+
+    <h1>Сотрудники</h1>
+
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Имя</th>
+          <th scope="col">Фамилия</th>
+          <th scope="col">Должность</th>
+          <th scope="col">Адрес</th>
+          <th scope="col">Начало работы</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Иван</td>
+          <td>Иванов</td>
+          <td>Библиотекарь</td>
+          <td>г.Новосибирск, ул.Ленина, 3а</td>
+          <td>12.12.2012</td>
+          <td>
+            <button type="button" class="btn btn-danger">Удалить</button>
+            <button type="button" class="btn btn-danger">Редактировать</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button type="button" class="employees__add btn btn-outline-dark">Добавить</button>
+  </ng-template>
+</div>

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AuthRoutingModule } from './core/auth/auth-routing.module';
-import { EmployeesRoutingModule } from './employees/employees-routing.module';
 import { LibrariesRoutingModule } from './library/libraries-routing.module';
 
 const routes: Routes = [
@@ -16,8 +15,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes),
     AuthRoutingModule,
-    LibrariesRoutingModule,
-    EmployeesRoutingModule
+    LibrariesRoutingModule
   ],
   exports: [RouterModule]
 })
