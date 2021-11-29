@@ -8,7 +8,7 @@ import { LibraryDetailsComponent } from "./components/library-details/library-de
 import { ListOfLibrariesComponent } from "./components/list-of-libraries/list-of-libraries.component";
 import { SharedModule } from "../shared/shared.module";
 import { EmployeesModule } from "./employees/employees.module";
-import { BooksModule } from "./list-of-books/books.module";
+import { BooksModule } from "./books/books.module";
 
 @NgModule({
   imports: [
