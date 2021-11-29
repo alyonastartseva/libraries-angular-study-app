@@ -47,7 +47,7 @@ export class ListOfLibrariesComponent implements OnInit  {
 
   delete(library: ILibrary): void {
     this.libraries = this.libraries.filter(l => l !== library);
-    this.libraryService.deleteHero(library.id).subscribe();
+    this.libraryService.deleteLibrary(library.id).subscribe();
   }
 
   identify(index: number, library: ILibrary): number {

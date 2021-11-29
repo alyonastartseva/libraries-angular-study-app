@@ -31,7 +31,7 @@ export class LibraryService {
     return this.http.post<ILibrary>(this.librariesUrl, library, this.httpOptions);
   }
 
-  deleteHero(id: number): Observable<ILibrary> {
+  deleteLibrary(id: number): Observable<ILibrary> {
     const url = `${this.librariesUrl}/${id}`;
     return this.http.delete<ILibrary>(url, this.httpOptions);
   }

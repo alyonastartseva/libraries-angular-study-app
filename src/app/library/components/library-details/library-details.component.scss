@@ -1,5 +1,13 @@
-.library-buttons {
-  .library__change {
-    margin-right: 20px;
+.header {
+  margin-top: 20px;
+
+  &__info-library {
+    .change {
+      margin-right: 15px;
+    }
   }
 }
+
+
+
+

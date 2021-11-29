@@ -1,14 +1,19 @@
 <div class="container">
 
   <div class="header d-flex justify-content-between">
-    <div class="library-buttons">
-      <button type="button" class="library__change btn btn-outline-dark">Редактировать</button>
-      <button type="button" class="library__employees btn btn-outline-dark"
+    <div class="header__info-library">
+      <h1 class="title-block">Детали библиотеки</h1>
+      <button type="button" class="change btn btn-outline-dark">
+        <i class="fa fa-edit"></i>
+      </button>
+      <button type="button" class="employees btn btn-outline-dark"
               routerLink="/libraries/details/{{id}}/employees">Сотрудники
       </button>
     </div>
 
-    <button type="button" class="btn btn-outline-secondary" (click)="goBack()">Назад</button>
+    <button type="button" class="btn btn-outline-secondary" (click)="goBack()">
+      Назад
+    </button>
   </div>
 
   <div class="content">

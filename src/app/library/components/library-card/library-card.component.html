@@ -4,7 +4,9 @@
     <p class="card-text">{{ library.description }}</p>
     <div class="d-flex justify-content-between">
       <button routerLink="/libraries/details/{{library.id}}" class="btn btn-outline-secondary">Подробнее</button>
-      <button class="btn btn-danger" (click)="delete()">Удалить</button>
+      <button class="btn btn-danger" (click)="delete()">
+        <i class="fa fa-trash"></i>
+      </button>
     </div>
   </div>
 </div>
