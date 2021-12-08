@@ -8,38 +8,42 @@
     </button>
   </div>
 
-  <div class="content">
-    <table class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Имя</th>
-          <th scope="col">Фамилия</th>
-          <th scope="col">Должность</th>
-          <th scope="col">Адрес</th>
-          <th scope="col">Начало работы</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>Иван</td>
-          <td>Иванов</td>
-          <td>Библиотекарь</td>
-          <td>г.Новосибирск, ул.Ленина, 3а</td>
-          <td>12.12.2012</td>
-          <td>
-            <button type="button" class="btn btn-dark edit">
-              <i class="fa fa-edit"></i>
-            </button>
-            <button type="button" class="btn btn-danger delete">
-              <i class="fa fa-trash"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="content d-flex justify-content-center">
+    <p *ngIf="employees.length === 0; else tableOfEmployees">Сотрудники отсутствуют</p>
+
+    <ng-template #tableOfEmployees>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Имя</th>
+            <th scope="col">Фамилия</th>
+            <th scope="col">Должность</th>
+            <th scope="col">Адрес</th>
+            <th scope="col">Начало работы</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee of employees; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ employee.firstName }}</td>
+            <td>{{ employee.lastName }}</td>
+            <td>{{ employee.position }}</td>
+            <td>{{ employee.address }}</td>
+            <td>{{ employee.startedWork }}</td>
+            <td>
+              <button type="button" class="btn btn-dark edit">
+                <i class="fa fa-edit"></i>
+              </button>
+              <button type="button" class="btn btn-danger delete">
+                <i class="fa fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-template>
   </div>
 </ng-template>
 

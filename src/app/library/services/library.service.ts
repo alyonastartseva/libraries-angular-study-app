@@ -3,7 +3,8 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { ILibrary } from '../../core/interfaces/Library';
-import { API_SERVER, API_LIBRARIES } from 'src/app/core/constants/api';
+import { IEmployee } from 'src/app/core/interfaces/Employee';
+import { API_SERVER, API_LIBRARIES, API_EMPLOYEES } from 'src/app/core/constants/api';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class LibraryService {
   constructor(private http: HttpClient) {}
 
   librariesUrl = API_SERVER + API_LIBRARIES;
+  employeesUrl = API_SERVER + API_EMPLOYEES;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -35,6 +37,15 @@ export class LibraryService {
   deleteLibrary(id: string): Observable<ILibrary> {
     const url = `${this.librariesUrl}/${id}`;
     return this.http.delete<ILibrary>(url, this.httpOptions);
+  }
+
+  getEmployees(id: string): Observable<IEmployee[]> {
+    const url = `${this.employeesUrl}/${id}`;
+    return this.http.get<IEmployee[]>(url);
+  }
+
+  addEmployee(id: string, employee: IEmployee): Observable<IEmployee> {
+    return this.http.post<IEmployee>(`${this.employeesUrl}/${id}`, employee, this.httpOptions);
   }
 }
 

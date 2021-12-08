@@ -20,7 +20,7 @@ export class LibraryDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.paramMap.pipe(switchMap(params => params.getAll('id')))
-      .subscribe(data=> this.id = data);
+      .subscribe(data => this.id = data);
     console.log(this.id);
     this.getLibraryById(this.id);
   }
