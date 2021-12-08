@@ -5,6 +5,6 @@ export interface IEmployee {
   lastName: string;
   position: string;
   address?: string;
-  startedWork?: string;
+  startedWork?: number;
 
 }

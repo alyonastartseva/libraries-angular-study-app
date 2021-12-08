@@ -5,7 +5,6 @@ import { switchMap } from 'rxjs/operators';
 import { IEmployee } from 'src/app/core/interfaces/Employee';
 import { LibraryService } from 'src/app/library/services/library.service';
 
-
 @Component({
   selector: 'app-list-of-employees',
   templateUrl: './list-of-employees.component.html',
@@ -35,13 +34,13 @@ export class ListOfEmployeesComponent implements OnInit {
 
   getEmployees(libraryId: string): void {
     this.libraryService.getEmployees(libraryId)
-    .subscribe(employees => {
-      this.employees = employees;
-      this.loading = false;
-    })
+      .subscribe(employees => {
+        this.employees = employees;
+        this.loading = false;
+      })
   }
 
   addEmployee() {
-    console.log(this.newEmployee);
+    console.log({ ...this.newEmployee });
   }
 }

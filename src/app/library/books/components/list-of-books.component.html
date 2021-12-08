@@ -2,44 +2,99 @@
 
 <ng-template #loaded>
   <div class="header">
-    <h1 class="title-block">Библиотеки</h1>
-    <button type="button" class="btn btn-outline-dark">
+    <h1 class="title-block">Книги</h1>
+    <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#CreateBookModal">
       <i class="fa fa-plus"></i>
     </button>
   </div>
 
-  <div class="content">
-    <table class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Название</th>
-          <th scope="col">Автор</th>
-          <th scope="col">Жанр</th>
-          <th scope="col">Дата первой публикации</th>
-          <th scope="col">Количество экземляров</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>Евгений Онегин</td>
-          <td>А.С.Пушкин</td>
-          <td>Роман</td>
-          <td>1833</td>
-          <td>25</td>
-          <td>
-            <button type="button" class="btn btn-dark edit">
-              <i class="fa fa-edit"></i>
-            </button>
-            <button type="button" class="btn btn-danger delete">
-              <i class="fa fa-trash"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="content d-flex justify-content-center">
+    <p *ngIf="books.length === 0; else tableOfBooks">Книги отсутствуют</p>
+
+    <ng-template #tableOfBooks>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Название</th>
+            <th scope="col">Автор</th>
+            <th scope="col">Жанр</th>
+            <th scope="col">Дата первой публикации</th>
+            <th scope="col">Количество экземляров</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+         <tr *ngFor="let book of books; let i = index">
+            <th scope="col">{{ i + 1 }}</th>
+            <th scope="col">{{ book.title }}</th>
+            <th scope="col">{{ book.author }}</th>
+            <th scope="col">{{ book.genre }}</th>
+            <th scope="col">{{ book.dataFirstPublic }}</th>
+            <th scope="col">{{ book.numberCopies }}</th>
+         </tr>
+        </tbody>
+      </table>
+    </ng-template>
   </div>
+
+  <app-modal [id]="'CreateBookModal'">
+    <span title>Добавить книгу</span>
+    <form body #createBook="ngForm" (ngSubmit)="addBook()">
+      <div class="mb-3">
+        <label for="title" class="form-label required">
+          Название
+        </label>
+        <input type="text" class="form-control" id="title" [(ngModel)]="newBook.title" name="title" #title="ngModel" required>
+        <div [hidden]="title.valid || title.untouched" class="alert alert-danger">
+          Не указано название
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="author" class="form-label required">
+          Автор
+        </label>
+        <input type="text" class="form-control" id="author" [(ngModel)]="newBook.author" name="author" #author="ngModel" required>
+        <div [hidden]="author.valid || author.untouched" class="alert alert-danger">
+          Не указан автор
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="genre" class="form-label">
+          Жанр
+        </label>
+        <input type="text" class="form-control" id="genre" [(ngModel)]="newBook.genre" name="genre">
+      </div>
+      <div class="mb-3">
+        <label for="dataFirstPublic" class="form-label">
+          Дата первой публикации
+        </label>
+        <input type="text" class="form-control" id="dataFirstPublic" [(ngModel)]="newBook.dataFirstPublic" name="dataFirstPublic">
+      </div>
+      <div class="mb-3">
+        <label for="numberCopies" class="form-label required">
+          Количество экземляров
+        </label>
+        <input type="number" class="form-control" id="numberCopies" [(ngModel)]="newBook.numberCopies" name="numberCopies" #numberCopies="ngModel" required>
+        <div [hidden]="numberCopies.valid || numberCopies.untouched" class="alert alert-danger">
+          Не указано количество экземляров
+        </div>
+      </div>
+      <div class="d-flex justify-content-between">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+        <button type="submit" class="btn btn-primary" [disabled]="title.invalid || author.invalid || numberCopies.invalid" data-bs-target="#BookAddedModal" data-bs-toggle="modal" data-bs-dismiss="modal">Сохранить</button>
+      </div>
+    </form>
+  </app-modal>
+
+  <app-modal [id]="'BookAddedModal'">
+    <span title>Книга добавлена</span>
+    <p body>Книга
+      <b>{{ newBook.title | uppercase }}</b>
+      успешно добавлена.
+    </p>
+    <button footer (click)="createBook.reset()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Закрыть</button>
+  </app-modal>
+
 </ng-template>
 

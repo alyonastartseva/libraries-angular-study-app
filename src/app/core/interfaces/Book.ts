@@ -1,10 +1,10 @@
 export interface IBook {
 
-  _id: number;
+  _id: string;
   title: string;
   author: string;
-  genre: string;
-  dataFirstPublic: string;
-  numberCompies: number;
+  genre?: string;
+  dataFirstPublic?: string;
+  numberCopies: number;
 
 }

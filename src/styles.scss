@@ -14,3 +14,8 @@ html, body {
 .table {
   margin: 10px 0 40px 0;
 }
+
+label.required::after {
+  content: " *";
+  color: red;
+}
