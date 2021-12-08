@@ -17,6 +17,13 @@ export class ListOfEmployeesComponent implements OnInit {
 
   libraryId: string;
   employees: IEmployee[] = [];
+  newEmployee: IEmployee = {
+    _id: '',
+    firstName: '',
+    lastName: '',
+    position: ''
+  };
+
   loading = true;
 
   ngOnInit(): void {
@@ -32,5 +39,9 @@ export class ListOfEmployeesComponent implements OnInit {
       this.employees = employees;
       this.loading = false;
     })
+  }
+
+  addEmployee() {
+    console.log(this.newEmployee);
   }
 }
