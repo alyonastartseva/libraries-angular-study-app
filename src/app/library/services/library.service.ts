@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { ILibrary } from '../../core/interfaces/Library';
@@ -25,13 +25,18 @@ export class LibraryService {
     return this.http.get<ILibrary[]>(this.librariesUrl);
   }
 
-  getLibrary(id: string | undefined): Observable<ILibrary> {
+  getLibrary(id: string): Observable<ILibrary> {
     const url = `${this.librariesUrl}/${id}`;
     return this.http.get<ILibrary>(url);
   }
 
   addLibrary(library: ILibrary): Observable<ILibrary> {
     return this.http.post<ILibrary>(this.librariesUrl, library, this.httpOptions);
+  }
+
+  updateLibrary(id: string, library: ILibrary): Observable<ILibrary> {
+    const url = `${this.librariesUrl}/${id}`;
+    return this.http.put<ILibrary>(url, library, this.httpOptions)
   }
 
   deleteLibrary(id: string): Observable<ILibrary> {

@@ -1,50 +1,105 @@
-<div class="container">
-    <app-loader *ngIf="loading else loaded"></app-loader>
+<app-loader *ngIf="loading else loaded"></app-loader>
 
-    <ng-template #loaded>
+<ng-template #loaded>
+  <div class="container">
+    <div class="header d-flex justify-content-between">
+      <div class="header__info-library">
+        <h1 class="title-block">Детали библиотеки</h1>
 
-      <div class="header d-flex justify-content-between">
-        <div class="header__info-library">
-          <h1 class="title-block">Детали библиотеки</h1>
+        <button type="button" class="change btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#EditLibraryModal">
+          <i class="fa fa-edit"></i>
+        </button>
 
-          <button type="button" class="change btn btn-outline-dark">
-            <i class="fa fa-edit"></i>
-          </button>
-
-          <button type="button" class="books btn btn-outline-dark"
-                  routerLink="books">Книги
-          </button>
-          <button type="button" class="employees btn btn-outline-dark"
-          routerLink="employees">Сотрудники
-          </button>
-        </div>
-
-        <button type="button" class="btn btn-outline-secondary" (click)="goBack()">
-          Назад
+        <button type="button" class="books btn btn-outline-dark"
+                routerLink="books">Книги
+        </button>
+        <button type="button" class="employees btn btn-outline-dark"
+        routerLink="employees">Сотрудники
         </button>
       </div>
 
-      <table class="table table-striped table-hover">
-        <thead>
-        <tr>
-          <th scope="col">Название</th>
-          <th scope="col">Описание</th>
-          <th scope="col">Местоположение</th>
-          <th scope="col">Адрес</th>
-          <th scope="col">Юридическое лицо</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td>{{ selectedLibrary?.name }}</td>
-          <td>{{ selectedLibrary?.description }}</td>
-          <td>{{ selectedLibrary?.locale }}</td>
-          <td>{{ selectedLibrary?.address }}</td>
-          <td>{{ selectedLibrary?.organizationName }}</td>
-        </tr>
-        </tbody>
-      </table>
-    </ng-template>
+      <button type="button" class="btn btn-outline-secondary" (click)="goBack()">
+        Назад
+      </button>
+    </div>
 
-  <router-outlet></router-outlet>
-</div>
+    <table class="table table-striped table-hover">
+      <thead>
+      <tr>
+        <th scope="col">Название</th>
+        <th scope="col">Описание</th>
+        <th scope="col">Местоположение</th>
+        <th scope="col">Адрес</th>
+        <th scope="col">Юридическое лицо</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>{{ selectedLibrary?.name }}</td>
+        <td>{{ selectedLibrary?.description }}</td>
+        <td>{{ selectedLibrary?.locale }}</td>
+        <td>{{ selectedLibrary?.address }}</td>
+        <td>{{ selectedLibrary?.organizationName }}</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <router-outlet></router-outlet>
+
+  </div>
+
+  <app-modal [id]="'EditLibraryModal'">
+    <span title>Редактировать библиотеку</span>
+    <form body (ngSubmit)="updateLibrary()">
+      <div class="mb-3">
+        <label for="nameLibrary" class="form-label required">
+          Название
+        </label>
+        <input type="text" class="form-control" id="nameLibrary" [(ngModel)]="updatedLibrary.name" name="nameLibrary" #nameLibrary="ngModel" required>
+        <div [hidden]="nameLibrary.valid || nameLibrary.untouched" class="alert alert-danger">
+          Не указано название
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="descriptionLibrary" class="form-label">
+          Описание
+        </label>
+        <textarea class="form-control" id="descriptionLibrary" rows="3" [(ngModel)]="updatedLibrary.description" name="descriptionLibrary"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="localeLibrary" class="form-label required">
+          Местоположение
+        </label>
+        <input type="text" class="form-control" id="localeLibrary" [(ngModel)]="updatedLibrary.locale" name="localeLibrary" #localeLibrary="ngModel" required>
+        <div [hidden]="localeLibrary.valid || localeLibrary.untouched" class="alert alert-danger">
+          Не указано местоположение
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="addressLibrary" class="form-label required">
+          Адрес
+        </label>
+        <textarea class="form-control" id="addressLibrary" rows="2" [(ngModel)]="updatedLibrary.address" name="addressLibrary" #addressLibrary="ngModel" required></textarea>
+        <div [hidden]="addressLibrary.valid || addressLibrary.untouched" class="alert alert-danger">
+          Не указан адрес
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="organizationName" class="form-label">
+          Юридическое лицо
+        </label>
+        <textarea class="form-control" id="organizationName" rows="2" [(ngModel)]="updatedLibrary.organizationName" name="organizationName"></textarea>
+      </div>
+      <div class="d-flex justify-content-between">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+        <button type="submit" class="btn btn-primary" [disabled]="nameLibrary.invalid || localeLibrary.invalid || addressLibrary.invalid" data-bs-target="#LibraryEditedModal" data-bs-toggle="modal" data-bs-dismiss="modal">Сохранить</button>
+      </div>
+    </form>
+  </app-modal>
+
+  <app-modal [id]="'LibraryEditedModal'">
+    <span title>Библиотека изменена</span>
+    <p body>Библиотека <b>{{ selectedLibrary.name | uppercase }}</b> успешно изменена.</p>
+    <button footer type="button" class="btn btn-primary" data-bs-dismiss="modal">Закрыть</button>
+  </app-modal>
+</ng-template>

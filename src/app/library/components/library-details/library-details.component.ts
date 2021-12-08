@@ -14,8 +14,10 @@ export class LibraryDetailsComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private libraryService: LibraryService) {}
 
-  id: string | undefined;
+  id: string;
   selectedLibrary: ILibrary;
+  updatedLibrary: ILibrary;
+  
   loading = true;
 
   ngOnInit() {
@@ -25,12 +27,19 @@ export class LibraryDetailsComponent implements OnInit {
     this.getLibraryById(this.id);
   }
 
-  getLibraryById(id: string | undefined): void {
+  getLibraryById(id: string): void {
     this.libraryService.getLibrary(id)
       .subscribe(selectedLibrary => {
         this.selectedLibrary = selectedLibrary;
+        this.updatedLibrary = { ...this.selectedLibrary };
         this.loading = false;
       })
+  }
+
+  updateLibrary() {
+    this.libraryService.updateLibrary(this.id, this.updatedLibrary)
+      .subscribe();
+    this.selectedLibrary = { ...this.updatedLibrary };
   }
 
   goBack(): void {
