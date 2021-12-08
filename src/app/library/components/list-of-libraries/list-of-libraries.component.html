@@ -9,7 +9,7 @@
 
     <ng-template #areLibraries>
       <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div *ngFor="let library of libraries; trackBy:identify" class="col">
+        <div *ngFor="let library of libraries" class="col">
           <app-library (deleteLibrary)="delete($event)" [library]="library"></app-library>
         </div>
       </div>

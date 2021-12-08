@@ -3,7 +3,7 @@
     <h5 class="card-title">{{ library.name }}</h5>
     <p class="card-text">{{ library.description }}</p>
     <div class="d-flex justify-content-between">
-      <button routerLink="/libraries/details/{{library.id}}" class="btn btn-outline-secondary">Подробнее</button>
+      <button [routerLink]="['/details-library', library._id]" class="btn btn-outline-secondary">Подробнее</button>
       <button class="btn btn-danger" (click)="delete()">
         <i class="fa fa-trash"></i>
       </button>

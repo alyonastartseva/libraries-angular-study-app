@@ -1,6 +1,6 @@
 export interface ILibrary {
 
-  id: number;
+  _id: string;
   name: string;
   locale: string;
   address: string;

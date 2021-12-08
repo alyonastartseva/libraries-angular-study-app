@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { ILibrary } from '../../core/interfaces/Library';
-import { LIBRARIES_URL } from 'src/app/core/constants/api';
+import { API_SERVER, API_LIBRARIES } from 'src/app/core/constants/api';
 
 @Injectable({
   providedIn: 'root'
@@ -12,17 +12,18 @@ export class LibraryService {
 
   constructor(private http: HttpClient) {}
 
-  librariesUrl = LIBRARIES_URL;
+  librariesUrl = API_SERVER + API_LIBRARIES;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
   getLibraries(): Observable<ILibrary[]> {
+    console.log(this.librariesUrl);
     return this.http.get<ILibrary[]>(this.librariesUrl);
   }
 
-  getLibrary(id: number | undefined): Observable<ILibrary> {
+  getLibrary(id: string | undefined): Observable<ILibrary> {
     const url = `${this.librariesUrl}/${id}`;
     return this.http.get<ILibrary>(url);
   }
@@ -31,7 +32,7 @@ export class LibraryService {
     return this.http.post<ILibrary>(this.librariesUrl, library, this.httpOptions);
   }
 
-  deleteLibrary(id: number): Observable<ILibrary> {
+  deleteLibrary(id: string): Observable<ILibrary> {
     const url = `${this.librariesUrl}/${id}`;
     return this.http.delete<ILibrary>(url, this.httpOptions);
   }

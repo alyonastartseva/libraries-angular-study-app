@@ -14,7 +14,7 @@ export class ListOfLibrariesComponent implements OnInit  {
 
   libraries: ILibrary[] = [];
   newLibrary: ILibrary = {
-    id: 0,
+    _id: '',
     name: '',
     address: '',
     locale: '',
@@ -47,10 +47,10 @@ export class ListOfLibrariesComponent implements OnInit  {
 
   delete(library: ILibrary): void {
     this.libraries = this.libraries.filter(l => l !== library);
-    this.libraryService.deleteLibrary(library.id).subscribe();
+    this.libraryService.deleteLibrary(library._id).subscribe();
   }
 
-  identify(index: number, library: ILibrary): number {
-    return library.id;
-  }
+  // identify(index: number, library: ILibrary): number {
+  //   return library.id;
+  // }
 }

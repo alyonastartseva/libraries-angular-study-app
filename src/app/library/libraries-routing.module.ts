@@ -14,7 +14,7 @@ const routes: Routes = [
     canActivate: [AccessToLibraries]
   },
   {
-    path: 'libraries/details/:library',
+    path: 'details-library/:id',
     component: LibraryDetailsComponent,
     canActivate: [AccessToLibraries],
     children: [

@@ -14,19 +14,18 @@ export class LibraryDetailsComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private libraryService: LibraryService) {}
 
-  id: number | undefined;
+  id: string | undefined;
   selectedLibrary: ILibrary;
   loading = true;
 
   ngOnInit() {
-    this.activatedRoute.paramMap.pipe(
-        switchMap(params => params.getAll('library'))
-    )
-    .subscribe(data=> this.id = +data);
-    this.getLibraryById(this.id)
+    this.activatedRoute.paramMap.pipe(switchMap(params => params.getAll('id')))
+      .subscribe(data=> this.id = data);
+    console.log(this.id);
+    this.getLibraryById(this.id);
   }
 
-  getLibraryById(id: number | undefined): void {
+  getLibraryById(id: string | undefined): void {
     this.libraryService.getLibrary(id)
       .subscribe(selectedLibrary => {
         this.selectedLibrary = selectedLibrary;
