@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ILibrary } from '../../core/interfaces/Library';
 import { IEmployee } from 'src/app/core/interfaces/Employee';
 import { IBook } from 'src/app/core/interfaces/Book';
-import { API_SERVER, API_LIBRARIES, API_EMPLOYEES, API_BOOKS } from 'src/app/core/constants/api';
+import { API_LIBRARIES, API_EMPLOYEES, API_BOOKS } from 'src/app/core/constants/api';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +14,9 @@ export class LibraryService {
 
   constructor(private http: HttpClient) {}
 
-  librariesUrl = API_SERVER + API_LIBRARIES;
-  employeesUrl = API_SERVER + API_EMPLOYEES;
-  booksUrl = API_SERVER + API_BOOKS;
+  librariesUrl = API_LIBRARIES;
+  employeesUrl = API_EMPLOYEES;
+  booksUrl = API_BOOKS;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -47,7 +47,7 @@ export class LibraryService {
   }
 
   getEmployees(id: string): Observable<IEmployee[]> {
-    const url = `${this.employeesUrl}/${id}`;
+    const url = `${this.librariesUrl}/employees/${id}`;
     return this.http.get<IEmployee[]>(url);
   }
 

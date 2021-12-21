@@ -41,6 +41,16 @@ export class ListOfEmployeesComponent implements OnInit {
   }
 
   addEmployee() {
-    console.log({ ...this.newEmployee });
+    this.libraryService.addEmployee(this.libraryId, {
+      firstName: this.newEmployee.firstName,
+      lastName: this.newEmployee.lastName,
+      position: this.newEmployee.position,
+      address: this.newEmployee.address,
+      startedWork: this.newEmployee.startedWork
+     } as IEmployee)
+     .subscribe(employee => {
+       this.employees.push(employee);
+       console.log(employee);
+     })
   }
 }
