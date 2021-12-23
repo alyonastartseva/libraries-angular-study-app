@@ -3,7 +3,8 @@
 <ng-template #loaded>
   <div class="header">
     <h1 class="title-block">Сотрудники</h1>
-    <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#CreateEmployeeModal">
+    <button type="button" class="btn btn-outline-dark"
+    data-bs-toggle="modal" data-bs-target="#CreateEmployeeModal">
       <i class="fa fa-plus"></i>
     </button>
   </div>
@@ -33,7 +34,7 @@
             <td>{{ employee.address }}</td>
             <td>{{ employee.startedWork }}</td>
             <td>
-              <button type="button" class="btn btn-dark edit">
+              <button #buttonEditEmployeeRef type="button" class="btn btn-dark edit" (click)="selectEmployeeToEdit(employee, buttonEditEmployeeRef)">
                 <i class="fa fa-edit"></i>
               </button>
               <button type="button" class="btn btn-danger delete" (click)="deleteEmployee(employee)">
@@ -102,6 +103,65 @@
         {{ newEmployee.firstName | uppercase }}  {{ newEmployee.lastName | uppercase }}
       </b>
         успешно добавлен(а).</p>
+    <button footer (click)="createEmployee.reset()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Закрыть</button>
+  </app-modal>
+
+  <app-modal *ngIf="edited" [id]="'EditEmployeeModal'">
+    <span title>Редактировать данные сотрудника</span>
+    <form body (ngSubmit)="updateEmployee()">
+      <div class="mb-3">
+        <label for="firstName" class="form-label required">
+          Имя
+        </label>
+        <input type="text" class="form-control" id="firstName" [(ngModel)]="updatedEmployee.firstName" name="firstName" #firstName="ngModel" required>
+        <div [hidden]="firstName.valid || firstName.untouched" class="alert alert-danger">
+          Не указано имя
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="lastName" class="form-label required">
+          Фамилия
+        </label>
+        <input type="text" class="form-control" id="lastName" [(ngModel)]="updatedEmployee.lastName" name="lastName" #lastName="ngModel" required>
+        <div [hidden]="lastName.valid || lastName.untouched" class="alert alert-danger">
+          Не указана фамилия
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="position" class="form-label required">
+          Должность
+        </label>
+        <input type="text" class="form-control" id="position" [(ngModel)]="updatedEmployee.position" name="position" #position="ngModel" required>
+        <div [hidden]="position.valid || position.untouched" class="alert alert-danger">
+          Не указана должность
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="address" class="form-label">
+          Адрес
+        </label>
+        <textarea class="form-control" id="address" rows="3" [(ngModel)]="updatedEmployee.address" name="address"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="startedWork" class="form-label">
+          Год начала работы
+        </label>
+        <input type="number" class="form-control" id="startedWork" [(ngModel)]="updatedEmployee.startedWork" name="startedWork">
+      </div>
+      <div class="d-flex justify-content-between">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+        <button type="submit" class="btn btn-primary" [disabled]="firstName.invalid || lastName.invalid || position.invalid" data-bs-target="#EmployeeEditedModal" data-bs-toggle="modal" data-bs-dismiss="modal">Сохранить</button>
+      </div>
+    </form>
+  </app-modal>
+
+  <app-modal *ngIf="edited" [id]="'EmployeeEditedModal'">
+    <span title>Данные изменены</span>
+    <p body>Данные
+      <b>
+         {{ updatedEmployee.firstName | uppercase }}  {{ updatedEmployee.lastName | uppercase }}
+      </b>
+        успешно изменены.</p>
     <button footer (click)="createEmployee.reset()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Закрыть</button>
   </app-modal>
 

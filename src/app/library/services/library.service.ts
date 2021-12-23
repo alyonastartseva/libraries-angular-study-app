@@ -45,6 +45,11 @@ export class LibraryService {
     return this.http.delete<ILibrary>(url, this.httpOptions);
   }
 
+  getEmployeeById(id: string): Observable<IEmployee> {
+    const url = `${this.employeesUrl}/${id}`;
+    return this.http.get<IEmployee>(url);
+  }
+
   getEmployees(id: string): Observable<IEmployee[]> {
     const url = `${this.librariesUrl}/employees/${id}`;
     return this.http.get<IEmployee[]>(url);
@@ -62,6 +67,11 @@ export class LibraryService {
   deleteEmployee(libraryId: string, id: string): Observable<IEmployee> {
     const url = `${this.employeesUrl}/${libraryId}/${id}`;
     return this.http.delete<IEmployee>(url, this.httpOptions);
+  }
+
+  updateEmployee(id: string, employee: IEmployee): Observable<IEmployee> {
+    const url = `${this.employeesUrl}/${id}`;
+    return this.http.put<IEmployee>(url, employee, this.httpOptions);
   }
 }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 
 import { IEmployee } from 'src/app/core/interfaces/Employee';
@@ -22,6 +22,8 @@ export class ListOfEmployeesComponent implements OnInit {
     lastName: '',
     position: ''
   };
+  updatedEmployee: IEmployee;
+  edited = false;
 
   loading = true;
 
@@ -29,6 +31,15 @@ export class ListOfEmployeesComponent implements OnInit {
     this.activatedRoute.paramMap.pipe(switchMap(params => params.getAll('id')))
       .subscribe(data => this.libraryId = data);
     this.getEmployees(this.libraryId);
+  }
+
+  getEmployeeById(id: string): void {
+    this.libraryService.getEmployeeById(id)
+      .subscribe(employee => {
+        console.log(employee);
+        this.updatedEmployee = { ...employee };
+        this.loading = false;
+      })
   }
 
   getEmployees(libraryId: string): void {
@@ -54,7 +65,20 @@ export class ListOfEmployeesComponent implements OnInit {
 
   deleteEmployee(employee: IEmployee) {
     this.employees = this.employees.filter(e => e !== employee);
-    console.log(this.libraryId, employee._id);
     this.libraryService.deleteEmployee(this.libraryId, employee._id).subscribe();
+  }
+
+  selectEmployeeToEdit(employee: IEmployee, buttonEditEmployeeRef: HTMLButtonElement) {
+    this.updatedEmployee = { ...employee };
+    this.edited = true;
+
+    buttonEditEmployeeRef.setAttribute('data-bs-toggle', 'modal');
+    buttonEditEmployeeRef.setAttribute('data-bs-target', '#EditEmployeeModal');
+  }
+
+  updateEmployee() {
+    this.libraryService.updateEmployee(this.updatedEmployee._id, this.updatedEmployee)
+      .subscribe();
+    this.getEmployees(this.libraryId);
   }
 }
