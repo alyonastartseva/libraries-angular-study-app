@@ -51,7 +51,7 @@ export class LibraryService {
   }
 
   getBooks(id: string): Observable<IBook[]> {
-    const url = `${this.booksUrl}/${id}`;
+    const url = `${this.librariesUrl}/books/${id}`;
     return this.http.get<IBook[]>(url);
   }
 
