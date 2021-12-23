@@ -28,7 +28,6 @@ export class ListOfEmployeesComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.paramMap.pipe(switchMap(params => params.getAll('id')))
       .subscribe(data => this.libraryId = data);
-    console.log(this.libraryId);
     this.getEmployees(this.libraryId);
   }
 
@@ -50,7 +49,12 @@ export class ListOfEmployeesComponent implements OnInit {
      } as IEmployee)
      .subscribe(employee => {
        this.employees.push(employee);
-       console.log(employee);
      })
+  }
+
+  deleteEmployee(employee: IEmployee) {
+    this.employees = this.employees.filter(e => e !== employee);
+    console.log(this.libraryId, employee._id);
+    this.libraryService.deleteEmployee(this.libraryId, employee._id).subscribe();
   }
 }

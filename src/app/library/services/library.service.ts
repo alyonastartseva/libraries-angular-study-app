@@ -23,7 +23,6 @@ export class LibraryService {
   };
 
   getLibraries(): Observable<ILibrary[]> {
-    console.log(this.librariesUrl);
     return this.http.get<ILibrary[]>(this.librariesUrl);
   }
 
@@ -58,6 +57,11 @@ export class LibraryService {
 
   addEmployee(id: string, employee: IEmployee): Observable<IEmployee> {
     return this.http.post<IEmployee>(`${this.employeesUrl}/${id}`, employee, this.httpOptions);
+  }
+
+  deleteEmployee(libraryId: string, id: string): Observable<IEmployee> {
+    const url = `${this.employeesUrl}/${libraryId}/${id}`;
+    return this.http.delete<IEmployee>(url, this.httpOptions);
   }
 }
 
